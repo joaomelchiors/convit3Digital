@@ -6,7 +6,7 @@ import { Evento } from "../model";
 
 export default function criarEventoVazio(): Partial<Evento> {
     return {
-        id: Id.novo(),
+        id: Id.new(),
         nome: "",
         data: new Date(),
         local: "",

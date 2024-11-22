@@ -19,4 +19,3 @@ export default function completarDadosEvento (eventoParcial: Partial<Evento>): E
 
     return evento
 }
-

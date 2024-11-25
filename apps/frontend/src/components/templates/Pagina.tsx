@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import Logo from "./logo"
+import Logo from "./Logo"
 
 export interface PaginaProps {
     children: NonNullable<ReactNode>
@@ -10,19 +10,24 @@ export default function Pagina(props:PaginaProps) {
     
     
     return (
-        <div className="
+        <div id="renderPagina" className="
             flex flex-col
             justify-center items-center
-            p-10 min-h-screen
-            bg-[url('/background.png')] bg-cover
-        ">
+            py-10 min-h-screen
+            bg-black bg-[url('/background.png')] bg-cover
+        ">            
             <Logo />
-            <main className={`
+            <main id="renderContainer" className={`
                 flex-1
                 flex flex-col justify-center
-                py-11 container bg-red-500
-                ${props.className} 
-            0`}>{props.children}</main>
+                text-white
+                py-11 container 
+                ${props.className}
+            `}>
+                {props.children}
+            </main>
         </div>
     )
 }
+
+//classe container em global.css definindo a largura máxima do conteudo

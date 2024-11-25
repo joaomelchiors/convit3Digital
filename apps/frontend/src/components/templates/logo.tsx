@@ -11,17 +11,17 @@ export default function Logo() {
 
 
     return (
-        <Link 
+        <Link id='renderLogo' 
             href={'/'} 
             className={`
                 flex items-center gap-2
                 ${font.className}
         `}>
-            <Image src={'./logo.svg'} alt={'logo'} width={50} height={50}/>
+            <Image src={'/logo.svg'} alt={'logo'} width={50} height={50} style={{ width: "50px", height: "50px" }}/>
             <h1 className='
                 flex flex-col
                 leading-5
-                text-lg
+                text-zinc-200 text-lg
             '>
                 <span>
                     Convit

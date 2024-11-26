@@ -1,12 +1,9 @@
 import LogoGrande from "@/components/templates/LogoGrande";
-import { Evento } from "@/core";
+
 import Link from "next/link";
 
 export default function Home() {
 
-  const e: Partial<Evento> = {}
-  console.log(e)
-  
   return (
     <div className="
       flex flex-col

@@ -10,6 +10,9 @@
 !.yarn/releases
 !.yarn/versions
 
+#dist
+/packages/core/dist
+
 # testing
 /coverage
 

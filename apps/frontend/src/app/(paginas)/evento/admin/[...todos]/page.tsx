@@ -2,7 +2,7 @@
 
 import DashBoardEvento from "@/components/evento/DashBoardEvento"
 import FormSenhaEvento from "@/components/evento/FormSenhaEvento"
-import { Convidado, Evento, eventos } from "@/core"
+import { Convidado, Evento, eventos } from "core"
 import { use, useEffect, useState } from "react"
 
 export interface PaginaAdminEventoProps {

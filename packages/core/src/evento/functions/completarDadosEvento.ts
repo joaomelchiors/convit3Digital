@@ -1,6 +1,6 @@
-import { Evento } from "@/core";
+import { Evento } from "../model/";
 import validarEvento from "./validarEventos";
-import { Id, Senha } from "@/core/shared";
+import { Id, Senha } from "../../shared/";
 
 export default function completarDadosEvento (eventoParcial: Partial<Evento>): Evento {
 

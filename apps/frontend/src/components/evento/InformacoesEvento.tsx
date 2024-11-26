@@ -11,7 +11,7 @@ export default function InformacoesEvento(props: InformacoesEventoProps) {
     const evento = props.evento
    
     return (
-        <div id="container Informação" className={`flex flex-col gap-2
+        <div id="container Informação" className={`flex-1 flex flex-col gap-2
             ${props.className ?? ""}
         `}>
             <div className="
@@ -20,7 +20,7 @@ export default function InformacoesEvento(props: InformacoesEventoProps) {
                 px-6 py-4 rounded-md
                 border border-zinc-800
             ">
-                <span className="text-2xl font-black">{evento.alias}</span>
+                <span className="text-2xl font-black">{evento.alias}:</span>
                 <span className="text-xl text-zinc-300">{evento.nome}</span>
             </div>
             <div id="linha 1"className="flex gap-2">

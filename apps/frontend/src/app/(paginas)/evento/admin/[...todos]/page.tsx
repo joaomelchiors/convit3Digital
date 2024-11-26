@@ -25,7 +25,7 @@ export default function PaginaAdminEvento(props:PaginaAdminEventoProps) {
     const listaConvidadoConfirmado:Convidado[] = evento?.listaDeConvidados.filter((e) => e.confirmado) ?? [];
     const listaConvidadoSemConfirmacao:Convidado[] = evento?.listaDeConvidados.filter((e) => !e.confirmado) ?? [];
 
-    const totalConfirmado = listaConvidadoConfirmado.reduce((acc:number, convidado:Convidado) => 
+    const totalConfirmado:number = listaConvidadoConfirmado.reduce((acc:number, convidado:Convidado) => 
         acc + convidado.qtdeAcompanhantes + 1, 0)
     
     function carregarEvento() {
@@ -39,7 +39,15 @@ export default function PaginaAdminEvento(props:PaginaAdminEventoProps) {
 
     return (
         <div className="flex flex-col justify-center items-center">
-            {evento ? <DashBoardEvento evento={evento}/> : <FormSenhaEvento />}
+            {evento ? 
+                <DashBoardEvento 
+                    evento={evento} 
+                    presentes={listaConvidadoConfirmado} 
+                    ausentes={listaConvidadoSemConfirmacao} 
+                    totalGeral={totalConfirmado}
+                /> 
+            : <FormSenhaEvento />
+            }
         </div>
     )
 }

@@ -12,3 +12,59 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Evento {
+  id                String      @id @default(uuid())
+  alias             String
+  nome              String
+  senha             String
+  data              DateTime
+  local             String
+  descricao         String      @db.Text
+  imagem            String
+  imagemBackground  String
+  publicoEsperado   Int
+  createdAt         DateTime    @default(now())
+  listaDeConvidados Convidado[]
+
+  @@map("eventos") //mapeia o nome da tabela de Evento para eventos no bd
+}
+
+model Convidado {
+  id                  String  @id @default(uuid())
+  nome                String
+  email               String
+  telefone            String?
+  confirmado          Boolean
+  qtdeAcompanhantes   Int
+  possuiAcompanhantes Boolean
+  //listaDeAcompanhante Acompanhante[]
+  evento              Evento? @relation(fields: [eventoId], references: [id]) //references ID é o da tabela evento
+  eventoId            String? //chaveEstrangeira
+
+  @@map("convidados")
+}
+
+//um convidado para varios eventos
+
+//    export default interface Evento extends IndentificadorUnico {
+//        alias: string;
+//        nome: string;
+//        senha: string;
+//        data: Date;
+//        local: string;
+//        descricao: string;
+//        imagem: string;
+//        imagemBackground: string;
+//        publicoEsperado: number;
+//        listaDeConvidados: Convidado[];
+//    }
+//    export default interface Convidado extends IndentificadorUnico{
+//        nome: string;
+//        email: string;
+//        telefone?: number;
+//        confirmado: boolean;
+//        qtdeAcompanhantes: number;
+//        possuiAcompanhantes: boolean;
+//        listaDeAcompanhante?: Acompanhante[];
+//    }

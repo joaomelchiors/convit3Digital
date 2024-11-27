@@ -1,8 +1,20 @@
-import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, Post } from '@nestjs/common';
 import { DataBR, Evento, eventos, Id } from 'core';
 
 @Controller('eventos')
 export class EventosController {
+
+    @Post('acessar')
+    async acessarEvento(@Body() dados: {id: string, senha: string}) {
+        const evento = eventos.find(( evento ) => evento.id === dados.id && evento.senha === dados.senha )
+
+        if(!evento) {
+            throw new NotFoundException(`Senha inválida.`)
+        }
+
+        return this.serializar(evento)
+    }
+
 
     @Get()
     async buscarEventos() {
@@ -28,6 +40,18 @@ export class EventosController {
 
     };
 
+    @Get('validar/:alias/:id')
+    async validarAlias(@Param('alias') alias:string, @Param('id') id:string) {
+        const evento = eventos.find(( evento ) => evento.alias === alias);
+        /*
+            retorna um obejto 
+            se o alias é novo - ok
+            se não for o id tem que ser igual - ok
+            qualquer outra situação false
+        */
+        return { valido: !evento || evento.id === id}
+    }
+
     private serializar(evento: Evento) {
         return {
             ...evento,
@@ -40,5 +64,7 @@ export class EventosController {
             ...evento,
             data: DataBR.paraDate(evento.data)
         }
-    }
+    };
+
+
 }

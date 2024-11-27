@@ -1,0 +1,10 @@
+GET http://localhost:4000/ping
+
+###
+GET http://localhost:4000/eventos
+
+###
+GET http://localhost:4000/eventos/aniversario-joao
+
+###
+GET http://localhost:4000/eventos/72a24948-e02d-4338-b75c-1ed47663d3b4

@@ -1,3 +1,4 @@
+import Id from "../../shared/Id";
 import { Convidado } from "../model";
 import validarConvidado from "./validarConvidado";
 
@@ -15,8 +16,10 @@ export default function complementarConvidado(convidado: Partial<Convidado>): Co
 
 
     const convidadoAtualizado = {
+        id: convidado.id ?? Id.new(),
         ...convidado,
         qtdeAcompanhantes: temAcompanhantes ? convidado.qtdeAcompanhantes : 0,
+        
     }
 
     /*
@@ -29,7 +32,7 @@ export default function complementarConvidado(convidado: Partial<Convidado>): Co
 
 
 /*
-    nome: string;
+    nome: string; 
     email: string;
     telefone?: number;
     confirmado: boolean;

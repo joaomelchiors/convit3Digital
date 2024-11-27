@@ -20,3 +20,29 @@ Content-Type: application/json
     "id": "8598adb9-12ec-48a1-bbe5-d784ff9129aa",
     "senha": "estrela2024s"
 }
+
+###
+POST http://localhost:4000/eventos/72a24948-e02d-4338-b75c-1ed47663d3b4/convidado
+Content-Type: application/json
+
+{
+    "nome": "João Marcos",
+    "email": "joao@zmail.com",
+    "confirmado": true,
+    "qtdeAcompanhantes": 3,
+    "possuiAcompanhantes": true
+}
+
+###
+POST http://localhost:4000/eventos
+Content-Type: application/json
+
+{
+        "nome": "Ano novo da Susan",
+        "data": "2024-12-31T23:00",
+        "local": "Casa da Susan",
+        "descricao": "dia de festa",
+        "imagem": "asdasdasd",
+        "imagemBackground": "dasdasdada",
+        "publicoEsperado": 100
+}

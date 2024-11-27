@@ -1,8 +1,39 @@
 import { Body, Controller, Get, NotFoundException, Param, Post } from '@nestjs/common';
-import { DataBR, Evento, eventos, Id } from 'core';
+import { complementarConvidado, completarDadosEvento, Convidado, DataBR, Evento, eventos, Id } from 'core';
 
 @Controller('eventos')
 export class EventosController {
+
+
+    @Post()
+    async salvarEvento(@Body() novoEvento:Evento) {
+        const eventoCadastrado = eventos.find(( evento ) => evento.id === novoEvento.id || evento.alias === novoEvento.alias)
+
+        if(!!eventoCadastrado) {
+            throw new NotFoundException(`Evento já cadastrado.`)
+        }
+        
+        const eventoCompleto = completarDadosEvento(this.deserializar(novoEvento))
+        eventos.push(eventoCompleto)
+        return this.serializar(eventoCompleto)
+    }
+
+    @Post(':id/convidado')
+    async salvarConvidado(
+        @Param('id') id: string,
+        @Body() convidado: Convidado
+    ) {
+        const evento = eventos.find(( evento ) => evento.id === id)
+        if (!evento) {
+            throw new NotFoundException(`Evento não encontrado.`)
+        }
+
+        const convidadoCompletar = complementarConvidado(convidado)
+
+        evento.listaDeConvidados.push(convidadoCompletar);
+        return this.serializar(evento)
+    }
+
 
     @Post('acessar')
     async acessarEvento(@Body() dados: {id: string, senha: string}) {
@@ -14,7 +45,6 @@ export class EventosController {
 
         return this.serializar(evento)
     }
-
 
     @Get()
     async buscarEventos() {
@@ -65,6 +95,4 @@ export class EventosController {
             data: DataBR.paraDate(evento.data)
         }
     };
-
-
 }

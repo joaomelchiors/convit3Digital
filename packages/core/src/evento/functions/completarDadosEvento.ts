@@ -1,6 +1,6 @@
 import { Evento } from "../model/";
 import validarEvento from "./validarEventos";
-import { Id, Senha } from "../../shared/";
+import { Alias, Id, Senha } from "../../shared/";
 
 export default function completarDadosEvento (eventoParcial: Partial<Evento>): Evento {
 
@@ -11,10 +11,12 @@ export default function completarDadosEvento (eventoParcial: Partial<Evento>): E
     }
 
     const evento: Evento = {
-        ...eventoParcial,
         id: eventoParcial.id ?? Id.new(),
+        alias: eventoParcial.alias ?? Alias.formatar(eventoParcial.nome),
         senha: eventoParcial.senha ?? Senha.new(20),
-        publicoEsperado: eventoParcial.publicoEsperado ?? 3
+        ...eventoParcial,
+        publicoEsperado: eventoParcial.publicoEsperado ?? 3,
+        listaDeConvidados: eventoParcial.listaDeConvidados ?? []
     } as Evento  //as evento porque eu acredito que depois da validaçõa todos os dados estão certos
 
     return evento

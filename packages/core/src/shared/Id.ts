@@ -29,5 +29,5 @@ export default class Id {
     }
 }
 
-
-console.log(Id.validate("72a24948-e02d-4338-b75c-1ed47663d3b4"))
+console.log(Id.new)
+//console.log(Id.validate("72a24948-e02d-4338-b75c-1ed47663d3b4"))

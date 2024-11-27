@@ -19,10 +19,6 @@ export default function validarEvento(evento:Partial<Evento>): string[] {
         erros.push("Publico esperado é obrigatório") 
     }
 
-    if (!evento.listaDeConvidados) {
-        erros.push("Lista de convidado é obrigatório") 
-    }
-
     return erros
 }
 

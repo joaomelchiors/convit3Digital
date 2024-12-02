@@ -9,9 +9,14 @@
 
 import { Body, Controller, Get, NotFoundException, Param, Post } from '@nestjs/common';
 import { complementarConvidado, completarDadosEvento, Convidado, DataBR, Evento, eventos, Id } from 'core';
+import { EventoProvider } from './evento.provider';
 
 @Controller('eventos')
 export class EventosController {
+    
+    constructor(readonly eventoProvider: EventoProvider) {
+
+    }
 
 
     @Post()

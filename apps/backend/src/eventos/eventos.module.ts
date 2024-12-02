@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { EventosController } from './eventos.controller';
-import { PrismaProvider } from 'src/bd/prisma.provider';
+import { BdModule } from 'src/bd/bd.module'
 import { EventoProvider } from './evento.provider';
 
 @Module({
-  imports: [PrismaProvider],
+  imports: [BdModule],
   controllers: [EventosController],
   providers: [EventoProvider]
 })

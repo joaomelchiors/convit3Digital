@@ -1,3 +1,12 @@
+/*
+    no deign da arquitetura limpa, os controllers ficam na camada de adptadores.
+    ele é o intermediário entre a API rest (a chamada http) e a chamada para a camada de negócio
+    é pegar algo que veio na API que é o json, por exemplo, e transformar em algo para a chamada de negocio
+    o controller irá fazer essa tradução.
+    POr isso a função de converter dados (serializar, deserializar)
+*/
+
+
 import { Body, Controller, Get, NotFoundException, Param, Post } from '@nestjs/common';
 import { complementarConvidado, completarDadosEvento, Convidado, DataBR, Evento, eventos, Id } from 'core';
 

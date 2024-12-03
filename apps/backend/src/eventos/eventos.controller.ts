@@ -8,7 +8,7 @@
 */
 
 
-import { Body, Controller, Get, NotFoundException, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, Param, Post } from '@nestjs/common';
 import { complementarConvidado, completarDadosEvento, Convidado, DataBR, Evento, Id } from 'core';
 import { EventoProvider } from './evento.provider';
 
@@ -48,7 +48,7 @@ export class EventosController {
         const eventoCadastrado = await this.repo.buscarPorAlias(eventoCompleto.alias);
 
         if(eventoCadastrado && eventoCadastrado.id !== novoEvento.id) {
-            throw new NotFoundException(`Já existe evento com esse alias.`)
+            throw new HttpException(`Já existe evento com esse alias.`, 400)
         };
 
         await this.repo.salvar(eventoCompleto);   
@@ -75,7 +75,7 @@ export class EventosController {
         const evento = await this.repo.buscarPorAlias(alias);
 
         if(!evento){
-            throw new NotFoundException(`Evento não encontrado.`)
+            throw new HttpException(`Evento não encontrado.`, 400)
         }
 
         const convidadoCompletar = complementarConvidado(convidado)       
@@ -98,11 +98,11 @@ export class EventosController {
 
         const evento = await this.repo.buscarPorId(dados.id, true)
         if(!evento) {
-            throw new NotFoundException(`Evento não encontrado.`)
+            throw new HttpException(`Evento não encontrado.`, 400)
         }
 
         if(evento.senha !== dados.senha){
-            throw new NotFoundException(`Senha inválida.`)
+            throw new HttpException(`Senha inválida.`, 400)
         }
 
         return this.serializar(evento)
@@ -161,7 +161,7 @@ export class EventosController {
         };
 
         if(!evento) {
-            throw new NotFoundException(`Evento com idOrAlias ${idOrAlias} não localizado.`)
+            throw new HttpException(`Evento com idOrAlias ${idOrAlias} não localizado.`, 400)
         }
 
         return this.serializar(evento)

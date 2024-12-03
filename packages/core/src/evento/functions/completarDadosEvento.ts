@@ -16,8 +16,7 @@ export default function completarDadosEvento (eventoParcial: Partial<Evento>): E
         senha: eventoParcial.senha ?? Senha.new(20),
         ...eventoParcial,
         publicoEsperado: eventoParcial.publicoEsperado ?? 3,
-        listaDeConvidados: eventoParcial.listaDeConvidados ?? []
-    } as Evento  //as evento porque eu acredito que depois da validaçõa todos os dados estão certos
+    } as Evento //as evento porque eu acredito que depois da validaçõa todos os dados estão certos, mesmo sem a lista de convidados
 
     return evento
 }

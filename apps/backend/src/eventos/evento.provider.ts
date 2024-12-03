@@ -5,7 +5,6 @@ import { Convidado, Evento } from 'core';
 import { PrismaProvider } from 'src/bd/prisma.provider';
 
 
-//por ser um injectable o criação da classe e tudo mais será feito pelo framework
 @Injectable()
 export class EventoProvider {
     constructor(readonly prisma: PrismaProvider) {}

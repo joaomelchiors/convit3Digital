@@ -40,7 +40,8 @@ const eventos: Evento[] = [
                 qtdeAcompanhantes: 2,
             },
         ],
-    },
+    }
+    /*
     {
         id: "63343463-acf5-49bb-a23b-ec21e9533202",
         alias: 'evento-js-avancado',
@@ -238,6 +239,7 @@ const eventos: Evento[] = [
             },
         ],
     },
+    */
 ]
 
 export default eventos
